@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo1.dao.ProductDao">
+    <resultMap id="BaseResultMap" type="com.example.demo1.model.Product">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="code" property="code" jdbcType="VARCHAR"></result>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="price" property="price" jdbcType="DOUBLE"></result>
+        <result column="lower_price" property="lowerPrice" jdbcType="DOUBLE"></result>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,code, name, price,lower_price
+    </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM product
+    </select>
+
+    <delete id="delBYid" parameterType="INTEGER" >
+        DELETE FROM product where id=#{id,jdbcType=INTEGER}
+    </delete>
+
+</mapper>
